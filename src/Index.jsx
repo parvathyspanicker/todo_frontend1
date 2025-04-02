@@ -10,7 +10,7 @@ function Index() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/tasks")
+      .get("https://todo-backend-1-oexb.onrender.com/tasks")
       .then((response) => setTasks(response.data))
       .catch((error) => console.error("Error fetching tasks:", error));
   }, []);
@@ -18,7 +18,7 @@ function Index() {
   const handleAddTask = () => {
     if (newTask.trim() === "") return;
     axios
-      .post("http://localhost:3002/tasks", { text: newTask, completed: false })
+      .post("https://todo-backend-1-oexb.onrender.com/tasks", { text: newTask, completed: false })
       .then((response) => {
         setTasks([...tasks, response.data]);
         setNewTask("");
@@ -28,7 +28,7 @@ function Index() {
 
   const handleToggleTask = (id, completed) => {
     axios
-      .put(`http://localhost:3002/tasks/${id}`, { completed: !completed })
+      .put(`https://todo-backend-1-oexb.onrender.com/tasks/${id}`, { completed: !completed })
       .then(() => {
         setTasks(
           tasks.map((task) =>
@@ -41,7 +41,7 @@ function Index() {
 
   const handleDeleteTask = (id) => {
     axios
-      .delete(`http://localhost:3002/tasks/${id}`)
+      .delete(`https://todo-backend-1-oexb.onrender.com/tasks/${id}`)
       .then(() => {
         setTasks(tasks.filter((task) => task._id !== id));
       })
@@ -55,7 +55,7 @@ function Index() {
 
   const handleSaveEdit = (id) => {
     axios
-      .put(`http://localhost:3002/tasks/${id}`, { text: editedText })
+      .put(`https://todo-backend-1-oexb.onrender.com/tasks/${id}`, { text: editedText })
       .then(() => {
         setTasks(
           tasks.map((task) =>
